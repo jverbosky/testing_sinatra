@@ -12,7 +12,11 @@ class TestApp < Minitest::Test
   def test_get_entry_page
     get '/'
     assert(last_response.ok?)
+    assert(last_response.body.include?('Hello, what is your name?'))
+    assert(last_response.body.include?('<input type="text" name="name">'))
   end
+
+
 
 
 end
