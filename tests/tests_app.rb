@@ -14,9 +14,20 @@ class TestApp < Minitest::Test
     assert(last_response.ok?)
     assert(last_response.body.include?('Hello, what is your name?'))
     assert(last_response.body.include?('<input type="text" name="name">'))
+    assert(last_response.body.include?('<form method="post" action="name">'))
+
   end
 
 
+  def test_post_name
+    post '/name', name: 'John'
+    assert(last_response.ok?)
+  end
+
+
+
+# create tests for anything on the page that might break things
+# controls (such as forms) and variables
 
 
 end
