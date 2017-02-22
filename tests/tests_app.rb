@@ -13,27 +13,27 @@ class TestApp < Minitest::Test
     get '/'
     assert(last_response.ok?)  # assert server response == 200
     assert(last_response.body.include?('Hello, what is your name?'))
-    assert(last_response.body.include?('<input type="text" name="name">'))
     assert(last_response.body.include?('<form method="post" action="name">'))
+    assert(last_response.body.include?('<input type="text" name="user_name">'))
   end
 
   def test_post_name
-    post '/name', name: 'John'  # corresponds to name = params[:name]
+    post '/name', user_name: 'John'  # dummy values, corresponds to backend_name = params[:user_name]
     follow_redirect!  # need to specify to follow through route
-    assert(last_response.ok?)
+    assert(last_response.ok?)  # for "get 'get_age' do", need to retrieve something from the server to pass
     assert(last_response.body.include?('John'))  # getting value via redirect in post '/name'
   end
 
-  # def test_get_age
-  #   get '/age', user_name: 'jv'
-  #   # get '/age?user_name=jv'  # variation of previous line
-  #   assert(last_response.ok?)
-  #   assert(last_response.body.include?('jv'))
-  #   # can now add other assertions (form, input box)
-  #   # assert(last_response.body.include?('What is your name?'))
-  #   # assert(last_response.body.include?('<input type="text" name="name">'))
-  #   # assert(last_response.body.include?('<form method="post" action="name">'))
-  # end
+  def test_get_age
+    get '/get_age', u_name: 'jv'  # dummy values, corresponds to backend_name_2 = params[:u_name]
+    # get '/age?user_name=jv'  # variation of previous line
+    assert(last_response.ok?)  # for 
+    assert(last_response.body.include?('jv'))
+    # can now add other assertions (form, input box)
+    # assert(last_response.body.include?('What is your name?'))
+    # assert(last_response.body.include?('<input type="text" name="name">'))
+    # assert(last_response.body.include?('<form method="post" action="name">'))
+  end
 
 
 # create tests for anything on the page that might break things
