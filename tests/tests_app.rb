@@ -21,6 +21,7 @@ class TestApp < Minitest::Test
 
   def test_post_name
     post '/name', name: 'John'
+    follow_redirect!  # need to specify to follow through route
     assert(last_response.ok?)
     assert(last_response.body.include?('John'))
   end

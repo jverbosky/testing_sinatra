@@ -8,6 +8,11 @@ class PersonalDetailsApp < Sinatra::Base
 
   post '/name' do
     name = params[:name]
+    redirect '/age?user_name=' + name
+  end
+
+  get '/age' do
+    name = params[:user_name]
   end
 
 end
