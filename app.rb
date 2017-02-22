@@ -7,7 +7,7 @@ class PersonalDetailsApp < Sinatra::Base
   end
 
   post '/name' do
-
+    name = params[:name]
   end
 
 end
