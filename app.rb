@@ -6,4 +6,8 @@ class PersonalDetailsApp < Sinatra::Base
     erb :name
   end
 
+  post '/name' do
+
+  end
+
 end
