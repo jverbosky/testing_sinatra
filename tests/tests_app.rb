@@ -74,21 +74,20 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     # assert(last_response.body.include?('jverb'))  # reminder - body != erb body, see notes in lines 31 - 36
     # assert(last_response.body.include?('41'))  # reminder - body != erb body, see notes in lines 31 - 36
     assert(last_response.body.include?('Hello jverb, I see you are 41.  What are your favorite numbers?'))
-    assert(last_response.body.include?('<form method="post" action="post_numbers?un=jverb&ua=41'))
+    assert(last_response.body.include?('<form method="post" action="post_numbers?un=jverb&ua=41">'))
     assert(last_response.body.include?('<input type="text" name="num_1">'))
     assert(last_response.body.include?('<input type="text" name="num_2">'))
     assert(last_response.body.include?('<input type="text" name="num_3">'))
   end
 
-# create tests for anything on the page that might break things
-# controls (such as forms) and variables
-
+  def test_post_numbers_multiple_values_redirect
+    post 'post_numbers', n: 'JCV', a: '41', n1: '10', n2: '20', n3: '30'
+    # post '/post_numbers?u=JCV&u=41'
+    assert(last_response.ok?)
+  end
 
 
 end
 
-
-
-# - can run from terminal to verify that Gemfile is good:
-#      bundle exec ruby tests/tests_app.rb
-# - if something wrong in Gemfile will throw an error
+# create tests for anything on the page that might break things
+# controls (such as forms) and variables
