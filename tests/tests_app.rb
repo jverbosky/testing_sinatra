@@ -61,6 +61,7 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
   def test_post_age_multiple_values_redirects
     # post '/post_age', user_n: 'john_v', user_a: '41'
     post '/post_age?user_n=john_v', user_a: '41'  # variation of former - this is what is actually appearing in browser's address field
+    follow_redirect!
     assert(last_response.ok?)  # verify that post went through successfully
     assert(last_response.body.include?('john_v' && '41'))  # test for multiple values in include?
   end

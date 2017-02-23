@@ -19,7 +19,7 @@ class PersonalDetailsApp < Sinatra::Base
 
   post '/name' do
     backend_name = params[:user_name]
-    redirect '/age?u_name=' + backend_name  # comment out for def test_post_name_no_redirect
+    redirect '/age?u_name=' + backend_name  # comment out for test_post_name_no_redirect
   end
 
   get '/age' do
