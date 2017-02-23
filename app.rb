@@ -34,6 +34,8 @@ class PersonalDetailsApp < Sinatra::Base
   end
 
   get '/numbers' do
+    backend_name_4 = params[:u_n]
+    backend_age_2 = params[:u_n]
 
   end
 
