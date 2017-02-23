@@ -36,7 +36,8 @@ class PersonalDetailsApp < Sinatra::Base
   get '/numbers' do
     backend_name_4 = params[:u_n]
     backend_age_2 = params[:u_a]
-    "Your name is #{backend_name_4} and your age is #{backend_age_2}"  # kept failing on name, so used to verify output via rackup
+    # "Your name is #{backend_name_4} and your age is #{backend_age_2}"  # kept failing on name, so used to verify output via rackup
+    erb :get_numbers, locals: {u_n: backend_name_4, u_a: backend_age_2}
   end
 
 end
