@@ -81,9 +81,14 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
   end
 
   def test_post_numbers_multiple_values_redirect
-    post 'post_numbers', n: 'JCV', a: '41', n1: '10', n2: '20', n3: '30'
-    # post '/post_numbers?u=JCV&u=41'
+    # post 'post_numbers', n: 'JCV', a: '41', n1: '10', n2: '20', n3: '30'
+    post '/post_numbers?u=JCV&u=41', a: '41', n1: '10', n2: '20', n3: '30'  # variation of former with browser address field value
     assert(last_response.ok?)
+    assert(last_response.body.include?('JCV'))
+    assert(last_response.body.include?('41'))
+    assert(last_response.body.include?('10'))
+    assert(last_response.body.include?('20'))
+    assert(last_response.body.include?('30'))
   end
 
 
