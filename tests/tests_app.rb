@@ -45,7 +45,7 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
   def test_get_age
     # get '/age', u_name: 'JV'  # seed value - not an assertion, corresponds to backend_name_2 = params[:u_name]
     get '/age?u_name=JV'  # variation of previous line since we're using a redirect
-    assert(last_response.ok?)  # for "get 'get_age' do", need to retrieve something from the server to pass
+    assert(last_response.ok?)  # for "get '/age' do", need to retrieve something from the server to pass
     # assert(last_response.body.include?('JV'))  # reminder - body != erb body, see notes in lines 31 - 36
     assert(last_response.body.include?('Hello JV, what is your age?'))
     assert(last_response.body.include?('<form method="post" action="post_age?user_n=JV'))
@@ -63,8 +63,14 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     post '/post_age?user_n=john_v', user_a: '41'  # variation of former - this is what is actually appearing in browser's address field
     follow_redirect!
     assert(last_response.ok?)  # verify that post went through successfully
-    # assert(last_response.body.include?('john_v'))
+    assert(last_response.body.include?('john_v'))
     assert(last_response.body.include?('41'))
+  end
+
+  def test_get_numbers
+    # get '/numbers', u_n: 'jverb', u_a: '41'   # seed value - not an assertion, corresponds to backend_name_4 = params[:u_name]
+    get '/numbers?u_n=JV&u_a=41'  # variation of previous line since we're using a redirect
+    assert(last_response.ok?)  # for "get '/numbers' do", need to retrieve something from the server to pass
   end
 
 # create tests for anything on the page that might break things
