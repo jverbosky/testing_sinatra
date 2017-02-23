@@ -53,7 +53,7 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
   end
 
   def test_post_age
-    post '/numbers', user_age: '41'
+    post '/post_age', user_age: '41'
     assert(last_response.ok?)
     # assert(last_response.body.include?('John'))
   end
