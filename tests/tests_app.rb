@@ -36,22 +36,22 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
 #   - note that if erb is specified, value can be commented out in erb and assertion will still pass
 
   def test_post_name
-    post '/name', user_name: 'John'  # seed values - not an assertion, corresponds to backend_name = params[:user_name]
+    post '/name', user_name: 'John'  # seed value - not an assertion, corresponds to backend_name = params[:user_name]
     follow_redirect!  # need to include this line to trace the value through the routes - see notes in lines 26 - 29
     assert(last_response.ok?)  # for "post '/name' do", need to retrieve something from the server to pass
     assert(last_response.body.include?('John'))  # two ways to pass assertion - see notes in lines 31- 36
   end
 
-  # def test_get_age
-  #   get '/age', u_name: 'jv'  # seed values, corresponds to backend_name_2 = params[:u_name]
-  #   # get '/age?user_name=jv'  # variation of previous line
-  #   assert(last_response.ok?)  # for "get 'get_age' do", need to retrieve something from the server to pass
+  def test_get_age
+    get '/age', u_name: 'jv'  # seed value - not an assertion, corresponds to backend_name_2 = params[:u_name]
+    # get '/age?user_name=jv'  # variation of previous line since we're using a redirect
+    assert(last_response.ok?)  # for "get 'get_age' do", need to retrieve something from the server to pass
   #   assert(last_response.body.include?('jv'))
   #   # can now add other assertions (form, input box)
   #   assert(last_response.body.include?('What is your age?'))
   #   assert(last_response.body.include?('<form method="post" action="age">'))
   #   assert(last_response.body.include?('<input type="text" name="user_age">'))
-  # end
+  end
 
 
 # create tests for anything on the page that might break things

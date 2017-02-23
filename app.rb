@@ -24,7 +24,7 @@ class PersonalDetailsApp < Sinatra::Base
 
   get '/age' do
     backend_name_2 = params[:u_name]
-    erb :get_age, locals: {u_name: backend_name_2}
+    # erb :get_age, locals: {u_name: backend_name_2}
   end
 
 end
