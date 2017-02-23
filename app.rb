@@ -30,12 +30,12 @@ class PersonalDetailsApp < Sinatra::Base
   post '/post_age' do
     backend_name_3 = params[:user_n]  # can use to pass basic (no redirect) name and age assertions (line 58)
     backend_age = params[:user_a]
-    redirect '/numbers?u_n=' + backend_name_3 + 'u_a=' + backend_age  # comment out for test_post_age_multiple_values_no_redirect
+    redirect '/numbers?u_n=' + backend_name_3 + '&u_a=' + backend_age  # comment out for test_post_age_multiple_values_no_redirect
   end
 
   get '/numbers' do
     backend_name_4 = params[:u_n]
-    backend_age_2 = params[:u_n]
+    backend_age_2 = params[:u_a]
 
   end
 
