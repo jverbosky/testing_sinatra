@@ -52,6 +52,12 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     assert(last_response.body.include?('<input type="text" name="user_age">'))
   end
 
+  def test_post_age
+    post '/numbers', user_age: '41'
+    assert(last_response.ok?)
+    # assert(last_response.body.include?('John'))
+  end
+
 
 # create tests for anything on the page that might break things
 # controls (such as forms) and variables
