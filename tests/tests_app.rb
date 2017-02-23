@@ -59,7 +59,7 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
   # end
 
   def test_post_age_multiple_values_redirect
-    # post '/post_age', user_n: 'john_v', user_a: '41'
+    # post '/post_age', user_n: 'john_v', user_a: '41'  # user_a corresponds directly to name="user_a" in input
     post '/post_age?user_n=john_v', user_a: '41'  # variation of former - this is what is actually appearing in browser's address field
     follow_redirect!
     assert(last_response.ok?)  # verify that post went through successfully
@@ -81,11 +81,13 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
   end
 
   def test_post_numbers_multiple_values_redirect
-    # post 'post_numbers', n: 'JCV', a: '41', n1: '10', n2: '20', n3: '30'
-    post '/post_numbers?un=JCV&ua=41', n1: '10', n2: '20', n3: '30'  # variation of former with browser address field value
+    # post 'post_numbers', n: 'JCV', a: '41', num_1: '10', num_2: '20', num_3: '30'  # num_1, etc correspond directly to name="num_1" in input
+    post '/post_numbers?un=JCV&ua=41', num_1: '10', num_2: '20', num_3: '30'  # variation of former with browser address field value
     assert(last_response.ok?)
-    assert(last_response.body.include?('Hello again JCV. You are 41 years old.'))
-    # assert(last_response.body.include?('Hello again JCV. You are 41 years old. Your favorite numbers are 10, 20 and 30.'))
+    assert(last_response.body.include?('Hello again JCV.'))
+    assert(last_response.body.include?('You are 41 years old.'))
+    assert(last_response.body.include?('Your favorite numbers are 10, 20 and 30.'))
+    assert(last_response.body.include?('The sum of your favorite numbers is 60, which is greater than your age.'))
   end
 
 
