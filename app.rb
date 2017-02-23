@@ -43,9 +43,12 @@ class PersonalDetailsApp < Sinatra::Base
   post '/post_numbers' do
     backend_name_5 = params[:un]
     backend_age_3 = params[:ua]
-    num_1 = params[:num_1]
-    num_2 = params[:num_2]
-    num_3 = params[:num_3]
+    one = params[:num_1]
+    two = params[:num_2]
+    three = params[:num_3]
+    "Hello again #{backend_name_5}. You are #{backend_age_3} years old."
+    # 'Hello again #{backend_name_5}. You are #{backend_age_3} years old.'
+    # "#{backend_name_5}, you are #{backend_age_3} years old. Your favorite numbers are #{one}, #{two} and #{three}."
   end
 
 end
