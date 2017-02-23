@@ -52,14 +52,10 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     assert(last_response.body.include?('<input type="text" name="user_age">'))
   end
 
-  def test_post_age
+  def test_post_age_multiple_values_no_redirects
     post '/post_age', user_n: 'john_v', user_a: '41'
     assert(last_response.ok?)
     assert(last_response.body.include?('john_v' && '41'))
-    # assert(last_response.body.include?('41'))
-    # post '/post_age', user_a: '41'
-    # assert(last_response.ok?)
-    # assert(last_response.body.include?('41'))
   end
 
 

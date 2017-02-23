@@ -28,7 +28,7 @@ class PersonalDetailsApp < Sinatra::Base
   end
 
   post '/post_age' do
-    backend_name_3 = params[:user_n]
+    backend_name_3 = params[:user_n]  # can use to pass basic (no redirect) name and age assertions (line 58)
     backend_age = params[:user_a]
   end
 
