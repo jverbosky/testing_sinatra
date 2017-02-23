@@ -3,7 +3,7 @@ require 'sinatra'
 class PersonalDetailsApp < Sinatra::Base
 
   get '/' do
-    erb :get_name
+    # erb :get_name
   end
 
   post '/name' do
