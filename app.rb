@@ -19,15 +19,15 @@ class PersonalDetailsApp < Sinatra::Base
 
   post '/name' do
     backend_name = params[:user_name]
-  #   redirect '/age?u_name=' + backend_name  # comment out for def test_post_name_no_redirect
+    redirect '/age?u_name=' + backend_name  # comment out for def test_post_name_no_redirect
   end
 
-  # get '/age' do
+  get '/age' do
   #   backend_name_2 = params[:u_name]
   #   # for test_post_name > assert(last_response.ok?) to pass,
   #   # can't return erb without specifying u_name in the .erb
   #   erb :get_age, locals: {u_name: backend_name_2}
-  # end
+  end
 
 end
 

@@ -18,17 +18,22 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     assert(last_response.body.include?('<input type="text" name="user_name">'))  # ditto
   end
 
-  def test_post_name_no_redirect  # example without redirect (comment out app.rb line 22)
-    post '/name', user_name: 'John'  # seed values - not an assertion, corresponds to backend_name = params[:user_name]
-    assert(last_response.body.include?('John'))  # getting value via seed value
-  end
-
-  # def test_post_name
+  # def test_post_name_no_redirect  # example without redirect (comment out app.rb line 22)
   #   post '/name', user_name: 'John'  # seed values - not an assertion, corresponds to backend_name = params[:user_name]
-  #   follow_redirect!  # if using redirect, need to include this line to trace the value through the routes
-  #   assert(last_response.ok?)  # for "post '/name' do", need to retrieve something from the server to pass
-  #   assert(last_response.body.include?('John'))  # getting value via redirect in post '/name'
+  #   assert(last_response.body.include?('John'))  # getting value via seed value
   # end
+
+# Notes on using follow_redirect!
+# - need to include follow_redirect! in order to redirected value through routes
+# - in order for subsequent last_response.ok? assertion to pass, need to have get route available in app.rb
+#   - for example, simply having "get '/age' do (line 25) and "end" (line 30) present will allow the assertion to pass
+
+  def test_post_name
+    post '/name', user_name: 'John'  # seed values - not an assertion, corresponds to backend_name = params[:user_name]
+    follow_redirect!  # if using redirect, need to include this line to trace the value through the routes
+    assert(last_response.ok?)  # for "post '/name' do", need to retrieve something from the server to pass
+    #assert(last_response.body.include?('John'))  # getting value via redirect in post '/name'
+  end
 
   # def test_get_age
   #   get '/age', u_name: 'jv'  # seed values, corresponds to backend_name_2 = params[:u_name]
