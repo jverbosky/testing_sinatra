@@ -28,7 +28,7 @@ class PersonalDetailsApp < Sinatra::Base
   end
 
   post '/post_age' do
-    
+    backend_name_3 = params[:user_n]
     # backend_age = params[:user_age]
   end
 
