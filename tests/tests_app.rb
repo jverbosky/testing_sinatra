@@ -52,18 +52,18 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     assert(last_response.body.include?('<input type="text" name="user_a">'))
   end
 
-  # def test_post_age_multiple_values_no_redirects  # app.rb line 31 uncommented
+  # def test_post_age_multiple_values_no_redirect  # app.rb line 31 uncommented
   #   post '/post_age', user_n: 'john_v', user_a: '41'  # passing multiple values
   #   assert(last_response.ok?)
   #   assert(last_response.body.include?('john_v' && '41'))  # verifying multiple values, via assignments in app.rb lines 31 & 32
   # end
 
-  # def test_post_age_multiple_values_redirects
-  #   post '/post_age', user_a: '41'
-  #   assert(last_response.ok?)
-  #   assert(last_response.body.include?('41' && 'jv'))
-  # end
-
+  def test_post_age_multiple_values_redirects
+    # post '/post_age', user_n: 'john_v', user_a: '41'
+    post '/post_age?user_n=john_v', user_a: '41'  # variation of former - this is what is actually appearing in browser's address field
+    assert(last_response.ok?)  # verify that post went through successfully
+    assert(last_response.body.include?('john_v' && '41'))  # test for multiple values in include?
+  end
 
 # create tests for anything on the page that might break things
 # controls (such as forms) and variables
