@@ -1,4 +1,4 @@
-require 'sinatra'  # in modular style, should we use:  'sinatra/base' instead of 'sinatra'?
+require 'sinatra'  # in modular style, should we use:  'sinatra/base' instead of 'sinatra'?     ?????
 
 # modular style application - PersonalDetailsApp subclass inherits from Sinatra::Base class
 class PersonalDetailsApp < Sinatra::Base
@@ -23,10 +23,8 @@ class PersonalDetailsApp < Sinatra::Base
   end
 
   get '/age' do
-  #   backend_name_2 = params[:u_name]
-  #   # for test_post_name > assert(last_response.ok?) to pass,
-  #   # can't return erb without specifying u_name in the .erb
-  #   erb :get_age, locals: {u_name: backend_name_2}
+    backend_name_2 = params[:u_name]
+    erb :get_age, locals: {u_name: backend_name_2}
   end
 
 end

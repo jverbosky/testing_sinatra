@@ -7,7 +7,7 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
   # Methods include: get, post, last_response, follow_redirect!
 
   def app
-    PersonalDetailsApp  # most examples use App.new - reason why we don't need .new here?
+    PersonalDetailsApp  # most examples use App.new - reason why we don't need .new here?     ?????
   end
 
   def test_get_entry_page
@@ -28,11 +28,18 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
 # - in order for subsequent last_response.ok? assertion to pass, need to have get route available in app.rb
 #   - for example, simply having "get '/age' do (line 25) and "end" (line 30) present will allow the assertion to pass
 
+# Notes on assert(last_response.body.include?('John')) when used with follow_redirect!
+# - assertion requires value to be available in redirect destination route (get '/age' do)
+# - if no erb specfied in route, will obtain value via params[] (ex: backend_name_2 = params[:u_name])
+# - if erb is specified in route, need to pass variable to erb (ex: locals: {u_name: backend_name_2})
+#   and add value somewhere in erb (ex: via <%= u_name %>)
+#   - note that if erb is specified, value can be commented out in erb and assertion will still pass
+
   def test_post_name
     post '/name', user_name: 'John'  # seed values - not an assertion, corresponds to backend_name = params[:user_name]
-    follow_redirect!  # if using redirect, need to include this line to trace the value through the routes
+    follow_redirect!  # need to include this line to trace the value through the routes - see notes in lines 26 - 29
     assert(last_response.ok?)  # for "post '/name' do", need to retrieve something from the server to pass
-    #assert(last_response.body.include?('John'))  # getting value via redirect in post '/name'
+    assert(last_response.body.include?('John'))  # two ways to pass assertion - see notes in lines 31- 36
   end
 
   # def test_get_age
