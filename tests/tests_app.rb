@@ -46,11 +46,10 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     get '/age', u_name: 'jv'  # seed value - not an assertion, corresponds to backend_name_2 = params[:u_name]
     # get '/age?user_name=jv'  # variation of previous line since we're using a redirect
     assert(last_response.ok?)  # for "get 'get_age' do", need to retrieve something from the server to pass
-  #   assert(last_response.body.include?('jv'))
-  #   # can now add other assertions (form, input box)
-  #   assert(last_response.body.include?('What is your age?'))
-  #   assert(last_response.body.include?('<form method="post" action="age">'))
-  #   assert(last_response.body.include?('<input type="text" name="user_age">'))
+    assert(last_response.body.include?('jv'))  # reminder - body != erb body, see notes in lines 31 - 36
+    assert(last_response.body.include?('What is your age?'))
+    assert(last_response.body.include?('<form method="post" action="age">'))
+    assert(last_response.body.include?('<input type="text" name="user_age">'))
   end
 
 
