@@ -90,7 +90,6 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     assert(last_response.body.include?('The sum of your favorite numbers is 60, which is greater than your age.'))
   end
 
-
 end
 
 # create tests for anything on the page that might break things

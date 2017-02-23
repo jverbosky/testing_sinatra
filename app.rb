@@ -46,9 +46,12 @@ class PersonalDetailsApp < Sinatra::Base
     one = params[:num_1]
     two = params[:num_2]
     three = params[:num_3]
+    sum = one.to_i + two.to_i + three.to_i
+    compare = (sum < backend_age_3.to_i) ? "less" : "greater"
     "Hello again #{backend_name_5}.<br>
      You are #{backend_age_3} years old.<br>
-     Your favorite numbers are #{one}, #{two} and #{three}."
+     Your favorite numbers are #{one}, #{two} and #{three}.<br>
+     The sum of your favorite numbers is #{sum}, which is #{compare} than your age."
   end
 
 end
