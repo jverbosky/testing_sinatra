@@ -40,5 +40,13 @@ class PersonalDetailsApp < Sinatra::Base
     erb :get_numbers, locals: {u_n: backend_name_4, u_a: backend_age_2}
   end
 
+  post '/post_numbers' do
+    backend_name_5 = params[:un]
+    backend_age_3 = params[:ua]
+    num_1 = params[:num_1]
+    num_2 = params[:num_2]
+    num_3 = params[:num_3]
+  end
+
 end
 
