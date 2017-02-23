@@ -71,9 +71,9 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     # get '/numbers', u_n: 'jverb', u_a: '41'   # seed value - not an assertion, corresponds to backend_name_4 = params[:u_name]
     get '/numbers?u_n=jverb&u_a=41'  # variation of previous line since we're using a redirect
     assert(last_response.ok?)  # for "get '/numbers' do", need to retrieve something from the server to pass
-    assert(last_response.body.include?('jverb'))  # reminder - body != erb body, see notes in lines 31 - 36
-    assert(last_response.body.include?('41'))  # reminder - body != erb body, see notes in lines 31 - 36
-    # assert(last_response.body.include?('Hello jverb, what is your age?'))
+    # assert(last_response.body.include?('jverb'))  # reminder - body != erb body, see notes in lines 31 - 36
+    # assert(last_response.body.include?('41'))  # reminder - body != erb body, see notes in lines 31 - 36
+    assert(last_response.body.include?('Hello jverb, I see you are 41.  What are your favorite numbers?'))
     # assert(last_response.body.include?('<form method="post" action="post_age?user_n=jverb'))
     # assert(last_response.body.include?('<input type="text" name="user_a">'))
   end
