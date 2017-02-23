@@ -17,10 +17,10 @@ class PersonalDetailsApp < Sinatra::Base
     erb :get_name
   end
 
-  # post '/name' do
-  #   backend_name = params[:user_name]
-  #   redirect '/age?u_name=' + backend_name
-  # end
+  post '/name' do
+    backend_name = params[:user_name]
+  #   redirect '/age?u_name=' + backend_name  # comment out for def test_post_name_no_redirect
+  end
 
   # get '/age' do
   #   backend_name_2 = params[:u_name]

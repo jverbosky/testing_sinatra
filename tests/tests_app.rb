@@ -18,15 +18,20 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     assert(last_response.body.include?('<input type="text" name="user_name">'))  # ditto
   end
 
+  def test_post_name_no_redirect  # example without redirect (comment out app.rb line 22)
+    post '/name', user_name: 'John'  # seed values - not an assertion, corresponds to backend_name = params[:user_name]
+    assert(last_response.body.include?('John'))  # getting value via seed value
+  end
+
   # def test_post_name
-  #   post '/name', user_name: 'John'  # dummy values, corresponds to backend_name = params[:user_name]
-  #   follow_redirect!  # need to specify to follow through route
+  #   post '/name', user_name: 'John'  # seed values - not an assertion, corresponds to backend_name = params[:user_name]
+  #   follow_redirect!  # if using redirect, need to include this line to trace the value through the routes
   #   assert(last_response.ok?)  # for "post '/name' do", need to retrieve something from the server to pass
   #   assert(last_response.body.include?('John'))  # getting value via redirect in post '/name'
   # end
 
   # def test_get_age
-  #   get '/age', u_name: 'jv'  # dummy values, corresponds to backend_name_2 = params[:u_name]
+  #   get '/age', u_name: 'jv'  # seed values, corresponds to backend_name_2 = params[:u_name]
   #   # get '/age?user_name=jv'  # variation of previous line
   #   assert(last_response.ok?)  # for "get 'get_age' do", need to retrieve something from the server to pass
   #   assert(last_response.body.include?('jv'))
