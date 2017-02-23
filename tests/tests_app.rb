@@ -1,20 +1,21 @@
-require 'minitest/autorun'
-require 'rack/test'
-require_relative '../app.rb'
+require 'minitest/autorun'  # need for the Minitest::Test class
+require 'rack/test'  # need for the Rack::Test::Methods mixin
+require_relative '../app.rb'  # path to app file (one subdirectory higher than this file)
 
-class TestApp < Minitest::Test
-  include Rack::Test::Methods
+class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test class
+  include Rack::Test::Methods  # Include the methods in the Rack::Test:Methods module (mixin)
+  # Methods include: get, post, last_response, follow_redirect!
 
   def app
-    PersonalDetailsApp
+    PersonalDetailsApp  # most examples use App.new - reason why we don't need .new here?
   end
 
   def test_get_entry_page
     get '/'  # verify a (get '/' do) route exists - doesn't need erb statement to pass
     assert(last_response.ok?)  # verify server response == 200 for (get '/') action - doesn't need erb statement to pass
-    # assert(last_response.body.include?('Hello, what is your name?'))  # 
-    # assert(last_response.body.include?('<form method="post" action="name">'))
-    # assert(last_response.body.include?('<input type="text" name="user_name">'))
+    assert(last_response.body.include?('Hello, what is your name?'))  # can pass with text in route (app.rb line 16) or with text in get_name.erb
+    assert(last_response.body.include?('<form method="post" action="name">'))  # need get_name.erb specified in route with same text in erb
+    assert(last_response.body.include?('<input type="text" name="user_name">'))  # ditto
   end
 
   # def test_post_name
