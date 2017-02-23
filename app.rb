@@ -24,11 +24,11 @@ class PersonalDetailsApp < Sinatra::Base
 
   get '/age' do
     backend_name_2 = params[:u_name]
-    erb :get_age, locals: {u_name: backend_name_2}
+    #erb :get_age, locals: {u_name: backend_name_2}
   end
 
   post '/post_age' do
-    # backend_name_3 = params[:user_n]  # can use to pass basic (no redirect) name and age assertions (line 58)
+    backend_name_3 = params[:user_n]  # can use to pass basic (no redirect) name and age assertions (line 58)
     backend_age = params[:user_a]
   end
 

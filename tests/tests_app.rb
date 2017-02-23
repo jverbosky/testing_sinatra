@@ -42,15 +42,15 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     assert(last_response.body.include?('John'))  # two ways to pass assertion - see notes in lines 31- 36
   end
 
-  def test_get_age
-    get '/age', u_name: 'jv'  # seed value - not an assertion, corresponds to backend_name_2 = params[:u_name]
-    # get '/age?user_name=jv'  # variation of previous line since we're using a redirect
-    assert(last_response.ok?)  # for "get 'get_age' do", need to retrieve something from the server to pass
-    assert(last_response.body.include?('jv'))  # reminder - body != erb body, see notes in lines 31 - 36
-    assert(last_response.body.include?('What is your age?'))
-    assert(last_response.body.include?('<form method="post" action="age">'))
-    assert(last_response.body.include?('<input type="text" name="user_age">'))
-  end
+  # def test_get_age
+  #   get '/age', u_name: 'jv'  # seed value - not an assertion, corresponds to backend_name_2 = params[:u_name]
+  #   # get '/age?user_name=jv'  # variation of previous line since we're using a redirect
+  #   assert(last_response.ok?)  # for "get 'get_age' do", need to retrieve something from the server to pass
+  #   assert(last_response.body.include?('jv'))  # reminder - body != erb body, see notes in lines 31 - 36
+  #   assert(last_response.body.include?('What is your age?'))
+  #   assert(last_response.body.include?('<form method="post" action="age">'))
+  #   assert(last_response.body.include?('<input type="text" name="user_age">'))
+  # end
 
   # def test_post_age_multiple_values_no_redirects  # app.rb line 31 uncommented
   #   post '/post_age', user_n: 'john_v', user_a: '41'  # passing multiple values
@@ -58,11 +58,11 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
   #   assert(last_response.body.include?('john_v' && '41'))  # verifying multiple values, via assignments in app.rb lines 31 & 32
   # end
 
-  def test_post_age_multiple_values_redirects
-    post '/post_age', user_a: '41'
-    assert(last_response.ok?)
-    assert(last_response.body.include?('41' && 'jv'))
-  end
+  # def test_post_age_multiple_values_redirects
+  #   post '/post_age', user_a: '41'
+  #   assert(last_response.ok?)
+  #   assert(last_response.body.include?('41' && 'jv'))
+  # end
 
 
 # create tests for anything on the page that might break things
