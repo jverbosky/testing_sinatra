@@ -1,0 +1,14 @@
+PS F:\Documents\Dropbox\TechHire\testing_sinatra> rackup
+[2017-02-23 17:35:01] INFO  WEBrick 1.3.1
+[2017-02-23 17:35:01] INFO  ruby 2.3.3 (2016-11-21) [i386-mingw32]
+[2017-02-23 17:35:01] INFO  WEBrick::HTTPServer#start: pid=5828 port=9292
+::1 - - [23/Feb/2017:17:35:07 -0500] "GET / HTTP/1.1" 200 237 0.0710
+::1 - - [23/Feb/2017:17:35:13 -0500] "POST /name HTTP/1.1" 303 - 0.0000
+::1 - - [23/Feb/2017:17:35:13 -0500] "GET /age?u_name=George HTTP/1.1" 200 154 0.0030
+::1 - - [23/Feb/2017:17:35:18 -0500] "POST /post_age?user_n=George HTTP/1.1" 303 - 0.0000
+::1 - - [23/Feb/2017:17:35:18 -0500] "GET /numbers?u_n=George&u_a=62 HTTP/1.1" 200 268 0.0030
+::1 - - [23/Feb/2017:17:35:23 -0500] "POST /post_numbers?un=George&ua=62 HTTP/1.1" 200 175 0.0000
+[2017-02-23 17:35:43] INFO  going to shutdown ...
+[2017-02-23 17:35:43] INFO  WEBrick::HTTPServer#start done.
+Terminate batch job (Y/N)? y
+PS F:\Documents\Dropbox\TechHire\testing_sinatra>
