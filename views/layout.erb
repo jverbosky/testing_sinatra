@@ -1,0 +1,31 @@
+<!-- avoid inline styling, including break tags - use <p> (<h#>, etc.) element -->
+
+<html>
+  <head>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body class="center">
+
+  <!-- header, main & footer sections are basically "specialized div" sections -->
+
+  <header class="background_color padding">
+    <!-- <center><h1 style="color: blue">Personal Details</h1></center> -->
+    <h1 class="blue">Personal Details</h1>
+    <!-- if using sessions, need to reset data to nil if using link back to home -->
+    <!-- <center><a href="/">Restart</a></center> -->
+     <a href="/">Restart</a>
+  </header>
+
+  <main>
+    <p><%= yield %></p>
+  </main>
+
+  <footer class="background_color padding">
+    <p>
+      Copyright<sup>©</sup> 2017
+      <a href="http://www.minedminds.org" target="_blank">Mined Minds</a>
+    </p>
+  </footer>
+
+  </body>
+</html>

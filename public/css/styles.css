@@ -1,0 +1,31 @@
+/* classes are used for multiple items, ids are used to target a single object */
+
+html {
+  background-color: #76b7e2;
+}
+
+footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+
+a {
+  color: #ffcc99;  /* Max's peach */
+}
+
+.center {
+  text-align: center;
+}
+
+.background_color {
+  background-color: grey;
+}
+
+.blue {
+  color: blue;
+}
+
+.padding {
+  padding: 10px;
+}
