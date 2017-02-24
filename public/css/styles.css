@@ -10,8 +10,23 @@ footer {
   width: 100%;
 }
 
+div {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
 a {
   color: #ffcc99;  /* Max's peach */
+}
+
+form {
+  padding-bottom: 35px;
+}
+
+.image {
+  background-image: url(/../images/personal_details.png);
+  height: 38%;
+  width: 50%;
 }
 
 .center {
