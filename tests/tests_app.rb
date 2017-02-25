@@ -106,13 +106,17 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     #   > app.rb (backend_name_5 = params[:un], backend_age_3 = params[:ua])
     follow_redirect!
     assert(last_response.ok?)
-    assert(last_response.body.include?('JCV'))
-    assert(last_response.body.include?('41'))
-    assert(last_response.body.include?('10'))
-    assert(last_response.body.include?('20'))
-    assert(last_response.body.include?('30'))
-    assert(last_response.body.include?('60'))
-    assert(last_response.body.include?('greater'))
+    # assert(last_response.body.include?('JCV'))
+    # assert(last_response.body.include?('41'))
+    # assert(last_response.body.include?('10'))
+    # assert(last_response.body.include?('20'))
+    # assert(last_response.body.include?('30'))
+    # assert(last_response.body.include?('60'))
+    # assert(last_response.body.include?('greater'))
+    assert(last_response.body.include?('Hello again JCV.'))
+    assert(last_response.body.include?('You are 41 years old.'))
+    assert(last_response.body.include?('Your favorite numbers are 10, 20 and 30.'))
+    assert(last_response.body.include?('The sum of your favorite numbers is 60, which is greater than your age.'))
   end
 
 end
