@@ -39,7 +39,7 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     post '/name', user_name: 'John'  # seed value - not an assertion
     # user_name trail: get_name.erb (name="user_name") > app.rb (backend_name = params[:user_name] > here
     follow_redirect!  # need to include this line to trace the value through the routes - see notes in lines 26 - 29
-    assert(last_response.ok?)  # for "post '/name' do", need to retrieve something from the server to pass
+    assert(last_response.ok?)  # verify that the the subsequent get route is accessible, no values required to pass
     assert(last_response.body.include?('John'))  # two ways to pass assertion - see notes in lines 31- 36
   end
 
@@ -67,13 +67,13 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     # user_n/user_a trail: get_age.erb (action="post_age?user_n=<%= u_name %>", name="user_a")
     #   > app.rb (backend_name_3 = params[:user_n], backend_age = params[:user_a])
     follow_redirect!  # need to include this line to trace the values through the routes - see notes in lines 26 - 29
-    assert(last_response.ok?)  # verify that post went through successfully
+    assert(last_response.ok?)  # verify that the the subsequent get route is accessible, no values required to pass
     assert(last_response.body.include?('john_v'))
     assert(last_response.body.include?('41'))
   end
 
   def test_get_numbers
-    # get '/numbers', u_n: 'jverb', u_a: '41'   # seed value - not an assertion, corresponds to backend_name_4 = params[:u_name]
+    # get '/numbers', u_n: 'jverb', u_a: '41'   # seed value - not an assertion, corresponds to backend_name_4 = params[:u_name], etc.
     get '/numbers?u_n=jverb&u_a=41'  # variation of previous line - this is what is actually appearing in browser's address field
     # u_n/u_a trail: app.rb (redirect '/numbers?u_n=' + backend_name_3 + '&u_a=' + backend_age)
     #   > app.rb (backend_name_4 = params[:u_n], backend_age_2 = params[:u_a])
@@ -104,19 +104,24 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     post '/post_numbers?un=JCV&ua=41', num_1: '10', num_2: '20', num_3: '30'  # variation of former with browser address field value
     # un/ua trail: get_numbers.erb (action="post_numbers?un=<%= usn %>&ua=<%= usa %>")
     #   > app.rb (backend_name_5 = params[:un], backend_age_3 = params[:ua])
-    follow_redirect!
-    assert(last_response.ok?)
-    # assert(last_response.body.include?('JCV'))
-    # assert(last_response.body.include?('41'))
-    # assert(last_response.body.include?('10'))
-    # assert(last_response.body.include?('20'))
-    # assert(last_response.body.include?('30'))
-    # assert(last_response.body.include?('60'))
-    # assert(last_response.body.include?('greater'))
-    assert(last_response.body.include?('Hello again JCV.'))
+    follow_redirect!  # need to include this line to trace the values through the routes - see notes in lines 26 - 29
+    assert(last_response.ok?)  # verify that the the subsequent get route is accessible, no values required to pass
+    assert(last_response.body.include?('JCV'))
+    assert(last_response.body.include?('41'))
+    assert(last_response.body.include?('10'))
+    assert(last_response.body.include?('20'))
+    assert(last_response.body.include?('30'))
+  end
+
+  def test_get_results_multiple_values_redirect
+    # seed values - not an assertion, corresponds to backend_name_6 = params[:u_name], etc.
+    # get '/results', n: 'Johnny', a: '41', n1: '100', n2: '200', n3: '300'
+    get '/results?n=Johnny&a=41&n1=100&n2=200&n3=300'  # variation of previous line - this is what is actually appearing in browser's address field
+    assert(last_response.ok?)  # for "get '/results' do", need to retrieve something from the server to pass
+    assert(last_response.body.include?('Hello again Johnny.'))
     assert(last_response.body.include?('You are 41 years old.'))
-    assert(last_response.body.include?('Your favorite numbers are 10, 20 and 30.'))
-    assert(last_response.body.include?('The sum of your favorite numbers is 60, which is greater than your age.'))
+    assert(last_response.body.include?('Your favorite numbers are 100, 200 and 300.'))
+    assert(last_response.body.include?('The sum of your favorite numbers is 600, which is greater than your age.'))
   end
 
 end

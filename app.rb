@@ -40,7 +40,7 @@ class PersonalDetailsApp < Sinatra::Base
     backend_name_4 = params[:u_n]  # u_n corresponds to u_n on line 36 in redirect > must match
     backend_age_2 = params[:u_a]  # u_a corresponds to u_a on line 36 in redirect > must match
     # "Your name is #{backend_name_4} and your age is #{backend_age_2}"  # test line - kept failing on name, so used to verify output via rackup
-    erb :get_numbers, locals: {usn: backend_name_4, usa: backend_age_2}  # usn & usa variables only used to pass values to get_numbers.erb
+    erb :get_numbers, locals: {usn: backend_name_4, usa: backend_age_2}  # usn: & usa: variables only used to pass values to get_numbers.erb
   end
 
   post '/post_numbers' do
@@ -49,9 +49,10 @@ class PersonalDetailsApp < Sinatra::Base
     one = params[:num_1]  # value pulled via name="num_1" in get_numbers.erb
     two = params[:num_2]  # value pulled via name="num_2" in get_numbers.erb
     three = params[:num_3]  # value pulled via name="num_3" in get_numbers.erb
-    # comment out line 53 for test_post_numbers_multiple_values_no_redirect
+    # comment out line 54 for test_post_numbers_multiple_values_no_redirect
+    # n/a/n1/n2/n3 variables accessed via params[] on lines 65 - 69
     redirect '/results?n=' + backend_name_5 + '&a=' + backend_age_3 + '&n1=' + one + '&n2=' + two + '&n3=' + three
-    # # comment out lines 55 - 60 if returning final results via this route
+    # # comment out lines 56 - 61 if returning final results via this route
     # sum = one.to_i + two.to_i + three.to_i
     # compare = (sum < backend_age_3.to_i) ? "less" : "greater"
     # "Hello again #{backend_name_5}.<br>
@@ -61,13 +62,14 @@ class PersonalDetailsApp < Sinatra::Base
   end
 
   get '/results' do
-    backened_name_6 = params[:n]
-    backened_age_4 = params[:a]
-    one_2 = params[:n1]
-    two_2 = params[:n2]
-    three_2 = params[:n3]
+    backened_name_6 = params[:n]  # n corresponds to n on line 54 in redirect > must match
+    backened_age_4 = params[:a]  # a corresponds to a on line 54 in redirect > must match
+    one_2 = params[:n1]  # n1 corresponds to n1 on line 54 in redirect > must match
+    two_2 = params[:n2]  # n2 corresponds to n2 on line 54 in redirect > must match
+    three_2 = params[:n3]  # n3 corresponds to n3 on line 54 in redirect > must match
     # line 70 for test_post_numbers_multiple_values_redirect to verify that redirected values made it to this route
     # "name = #{backened_name_6}, age = #{backened_age_4}, first = #{one_2}, second = #{two_2}, third = #{three_2}"
+    # view_name:, view_age:, view_n1:, view_n2: and view_n3: variables only used to pass values to results.erb
     erb :results, locals: {view_name: backened_name_6, view_age: backened_age_4, view_n1: one_2, view_n2: two_2, view_n3: three_2}
   end
 
