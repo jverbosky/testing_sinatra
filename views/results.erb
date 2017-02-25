@@ -3,3 +3,9 @@
 <%= view_n1 %>
 <%= view_n2 %>
 <%= view_n3 %>
+
+<% sum = view_n1.to_i + view_n2.to_i + view_n3.to_i %>
+<%= sum %>
+
+<% compare = (sum < view_age.to_i) ? "less" : "greater" %>
+<%= compare %>
