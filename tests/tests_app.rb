@@ -122,6 +122,8 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     assert(last_response.body.include?('You are 41 years old.'))
     assert(last_response.body.include?('Your favorite numbers are 100, 200 and 300.'))
     assert(last_response.body.include?('The sum of your favorite numbers is 600, which is greater than your age.'))
+    # how to add assertions for erb statements (i.e. lines 5 & 6 in results.erb) - fails on variables?     ?????
+    # assert(last_response.body.include?('<% sum = view_n1.to_i + view_n2.to_i + view_n3.to_i %>'))
   end
 
 end
