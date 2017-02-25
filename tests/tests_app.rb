@@ -36,7 +36,8 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
 #   - note that if erb is specified, value can be commented out in erb and assertion will still pass
 
   def test_post_name
-    post '/name', user_name: 'John'  # seed value - not an assertion, corresponds to backend_name = params[:user_name]
+    post '/name', user_name: 'John'  # seed value - not an assertion
+    # user_name trail: get_name.erb (name="user_name") > app.rb (backend_name = params[:user_name] > here
     follow_redirect!  # need to include this line to trace the value through the routes - see notes in lines 26 - 29
     assert(last_response.ok?)  # for "post '/name' do", need to retrieve something from the server to pass
     assert(last_response.body.include?('John'))  # two ways to pass assertion - see notes in lines 31- 36
@@ -44,7 +45,9 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
 
   def test_get_age
     # get '/age', u_name: 'JV'  # seed value - not an assertion, corresponds to backend_name_2 = params[:u_name]
-    get '/age?u_name=JV'  # variation of previous line since we're using a redirect
+    get '/age?u_name=JV'  # variation of previous line - this is what is actually appearing in browser's address field
+    # u_name trail: app.rb (redirect '/age?u_name=' + backend_name)
+    #   > app.rb (backend_name_2 = params[:u_name])
     assert(last_response.ok?)  # for "get '/age' do", need to retrieve something from the server to pass
     # assert(last_response.body.include?('JV'))  # reminder - body != erb body, see notes in lines 31 - 36
     assert(last_response.body.include?('Hello JV, what is your age?'))
@@ -60,8 +63,10 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
 
   def test_post_age_multiple_values_redirect
     # post '/post_age', user_n: 'john_v', user_a: '41'  # user_a corresponds directly to name="user_a" in input
-    post '/post_age?user_n=john_v', user_a: '41'  # variation of former - this is what is actually appearing in browser's address field
-    follow_redirect!
+    post '/post_age?user_n=john_v', user_a: '41'  # variation of previous line - this is what is actually appearing in browser's address field
+    # user_n/user_a trail: get_age.erb (action="post_age?user_n=<%= u_name %>", name="user_a")
+    #   > app.rb (backend_name_3 = params[:user_n], backend_age = params[:user_a])
+    follow_redirect!  # need to include this line to trace the values through the routes - see notes in lines 26 - 29
     assert(last_response.ok?)  # verify that post went through successfully
     assert(last_response.body.include?('john_v'))
     assert(last_response.body.include?('41'))
@@ -69,7 +74,9 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
 
   def test_get_numbers
     # get '/numbers', u_n: 'jverb', u_a: '41'   # seed value - not an assertion, corresponds to backend_name_4 = params[:u_name]
-    get '/numbers?u_n=jverb&u_a=41'  # variation of previous line since we're using a redirect
+    get '/numbers?u_n=jverb&u_a=41'  # variation of previous line - this is what is actually appearing in browser's address field
+    # u_n/u_a trail: app.rb (redirect '/numbers?u_n=' + backend_name_3 + '&u_a=' + backend_age)
+    #   > app.rb (backend_name_4 = params[:u_n], backend_age_2 = params[:u_a])
     assert(last_response.ok?)  # for "get '/numbers' do", need to retrieve something from the server to pass
     # assert(last_response.body.include?('jverb'))  # reminder - body != erb body, see notes in lines 31 - 36
     # assert(last_response.body.include?('41'))  # reminder - body != erb body, see notes in lines 31 - 36
@@ -83,6 +90,8 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
   def test_post_numbers_multiple_values_redirect
     # post 'post_numbers', n: 'JCV', a: '41', num_1: '10', num_2: '20', num_3: '30'  # num_1, etc correspond directly to name="num_1" in input
     post '/post_numbers?un=JCV&ua=41', num_1: '10', num_2: '20', num_3: '30'  # variation of former with browser address field value
+    # un/ua trail: get_numbers.erb (action="post_numbers?un=<%= usn %>&ua=<%= usa %>")
+    #   > app.rb (backend_name_5 = params[:un], backend_age_3 = params[:ua])
     assert(last_response.ok?)
     assert(last_response.body.include?('Hello again JCV.'))
     assert(last_response.body.include?('You are 41 years old.'))
