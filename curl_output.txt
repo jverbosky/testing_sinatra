@@ -1,0 +1,46 @@
+# output from running this command from Ubuntu box:
+# curl -v "http://127.0.0.1:9292/results?n=Johnny&a=41&n1=100&n2=200&n3=300" > curl_output.txt
+
+<!-- avoid inline styling, including break tags - use <p> (<h#>, etc.) element -->
+
+<html>
+  <head>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body class="center">
+
+  <!-- header, main & footer sections are basically "specialized div" sections -->
+
+  <header class="background_color padding">
+    <!-- <center><h1 style="color: blue">Personal Details</h1></center> -->
+    <h1 class="blue">Personal Details</h1>
+    <!-- if using sessions, need to reset data to nil if using link back to home -->
+    <!-- <center><a href="/">Restart</a></center> -->
+     <a href="/">Restart</a>
+  </header>
+
+  <main>
+    <p><p>Hello again Johnny.</p>
+<p>You are 41 years old.</p>
+<p>Your favorite numbers are 100, 200 and 300.</p>
+
+
+
+
+<p>The sum of your favorite numbers is 600, which is greater than your age.</p></p>
+    <div class="image">
+    </div>
+    <div class="padding">
+      <h2>...and give us your information.</h2>
+    </div>
+  </main>
+
+  <footer class="background_color padding">
+    <p>
+      Copyright<sup>©</sup> 2017
+      <a href="http://www.minedminds.org" target="_blank">Mined Minds</a>
+    </p>
+  </footer>
+
+  </body>
+</html>
