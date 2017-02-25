@@ -49,6 +49,9 @@ class PersonalDetailsApp < Sinatra::Base
     one = params[:num_1]  # value pulled via name="num_1" in get_numbers.erb
     two = params[:num_2]  # value pulled via name="num_2" in get_numbers.erb
     three = params[:num_3]  # value pulled via name="num_3" in get_numbers.erb
+    # comment out line 53 for test_post_numbers_multiple_values_no_redirect
+    redirect '/results?n=' + backend_name_5 + '&a=' + backend_age_3 + '&n1=' + one + '&n2=' + two + '&n3' + three
+    # # comment out lines 55 - 60 if returning final results via this route
     # sum = one.to_i + two.to_i + three.to_i
     # compare = (sum < backend_age_3.to_i) ? "less" : "greater"
     # "Hello again #{backend_name_5}.<br>
@@ -56,5 +59,15 @@ class PersonalDetailsApp < Sinatra::Base
     #  Your favorite numbers are #{one}, #{two} and #{three}.<br>
     #  The sum of your favorite numbers is #{sum}, which is #{compare} than your age."
   end
+
+  get '/results' do
+    backened_name_6 = params[:n]
+    backened_age_4 = params[:a]
+    one_2 = params[:n1]
+    two_2 = params[:n2]
+    three_2 = params[:n3]
+    "name = #{backened_name_6}, age = #{backened_age_4}, first = #{one_2}, second = #{two_2}, third = #{three_2}"
+  end
+
 
 end
