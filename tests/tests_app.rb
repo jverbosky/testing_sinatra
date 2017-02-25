@@ -106,6 +106,11 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     #   > app.rb (backend_name_5 = params[:un], backend_age_3 = params[:ua])
     follow_redirect!
     assert(last_response.ok?)
+    assert(last_response.body.include?('JCV'))
+    assert(last_response.body.include?('41'))
+    assert(last_response.body.include?('10'))
+    assert(last_response.body.include?('20'))
+    assert(last_response.body.include?('30'))
   end
 
 end
