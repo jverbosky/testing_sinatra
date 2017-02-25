@@ -87,6 +87,18 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     assert(last_response.body.include?('<input type="text" name="num_3">'))
   end
 
+  # def test_post_numbers_multiple_values_no_redirect
+  #   # post 'post_numbers', n: 'JCV', a: '41', num_1: '10', num_2: '20', num_3: '30'  # num_1, etc correspond directly to name="num_1" in input
+  #   post '/post_numbers?un=JCV&ua=41', num_1: '10', num_2: '20', num_3: '30'  # variation of former with browser address field value
+  #   # un/ua trail: get_numbers.erb (action="post_numbers?un=<%= usn %>&ua=<%= usa %>")
+  #   #   > app.rb (backend_name_5 = params[:un], backend_age_3 = params[:ua])
+  #   assert(last_response.ok?)
+  #   assert(last_response.body.include?('Hello again JCV.'))
+  #   assert(last_response.body.include?('You are 41 years old.'))
+  #   assert(last_response.body.include?('Your favorite numbers are 10, 20 and 30.'))
+  #   assert(last_response.body.include?('The sum of your favorite numbers is 60, which is greater than your age.'))
+  # end
+
   def test_post_numbers_multiple_values_redirect
     # post 'post_numbers', n: 'JCV', a: '41', num_1: '10', num_2: '20', num_3: '30'  # num_1, etc correspond directly to name="num_1" in input
     post '/post_numbers?un=JCV&ua=41', num_1: '10', num_2: '20', num_3: '30'  # variation of former with browser address field value
@@ -94,11 +106,6 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     #   > app.rb (backend_name_5 = params[:un], backend_age_3 = params[:ua])
     follow_redirect!
     assert(last_response.ok?)
-    # assert(last_response.ok?)
-    # assert(last_response.body.include?('Hello again JCV.'))
-    # assert(last_response.body.include?('You are 41 years old.'))
-    # assert(last_response.body.include?('Your favorite numbers are 10, 20 and 30.'))
-    # assert(last_response.body.include?('The sum of your favorite numbers is 60, which is greater than your age.'))
   end
 
 end
