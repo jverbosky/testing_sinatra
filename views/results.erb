@@ -1,11 +1,8 @@
-<%= view_name %>
-<%= view_age %>
-<%= view_n1 %>
-<%= view_n2 %>
-<%= view_n3 %>
+<p>Hello again <%= view_name %>.</p>
+<p>You are <%= view_age %> years old.</p>
+<p>Your favorite numbers are <%= view_n1 %>, <%= view_n2 %> and <%= view_n3 %>.</p>
 
 <% sum = view_n1.to_i + view_n2.to_i + view_n3.to_i %>
-<%= sum %>
-
 <% compare = (sum < view_age.to_i) ? "less" : "greater" %>
-<%= compare %>
+
+<p>The sum of your favorite numbers is <%= sum %>, which is <%= compare %> than your age.</p>
