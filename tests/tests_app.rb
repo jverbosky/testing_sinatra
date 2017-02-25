@@ -111,6 +111,8 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     assert(last_response.body.include?('10'))
     assert(last_response.body.include?('20'))
     assert(last_response.body.include?('30'))
+    assert(last_response.body.include?('60'))
+    assert(last_response.body.include?('greater'))
   end
 
 end
