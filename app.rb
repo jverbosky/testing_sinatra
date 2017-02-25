@@ -61,7 +61,13 @@ class PersonalDetailsApp < Sinatra::Base
   end
 
   get '/results' do
-
+    backened_name_6 = params[:n]
+    backened_age_4 = params[:a]
+    one_2 = params[:n1]
+    two_2 = params[:n2]
+    three_2 = params[:n3]
+    # line 70 for test_post_numbers_multiple_values_redirect to verify that redirected values made it to this route
+    "name = #{backened_name_6}, age = #{backened_age_4}, first = #{one_2}, second = #{two_2}, third = #{three_2}"
   end
 
 end
