@@ -68,8 +68,8 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     #   > app.rb (backend_name_3 = params[:user_n], backend_age = params[:user_a])
     follow_redirect!  # need to include this line to trace the values through the routes - see notes in lines 26 - 29
     assert(last_response.ok?)  # verify that the the subsequent get route is accessible, no values required to pass
-    assert(last_response.body.include?('john_v'))
-    assert(last_response.body.include?('41'))
+    assert(last_response.body.include?('john_v'))  # two ways to pass assertion - see notes in lines 31- 36
+    assert(last_response.body.include?('41'))  # two ways to pass assertion - see notes in lines 31- 36
   end
 
   def test_get_numbers
@@ -106,11 +106,11 @@ class TestApp < Minitest::Test  # TestApp subclass inherits from Minitest::Test 
     #   > app.rb (backend_name_5 = params[:un], backend_age_3 = params[:ua])
     follow_redirect!  # need to include this line to trace the values through the routes - see notes in lines 26 - 29
     assert(last_response.ok?)  # verify that the the subsequent get route is accessible, no values required to pass
-    assert(last_response.body.include?('JCV'))
-    assert(last_response.body.include?('41'))
-    assert(last_response.body.include?('10'))
-    assert(last_response.body.include?('20'))
-    assert(last_response.body.include?('30'))
+    assert(last_response.body.include?('JCV'))  # two ways to pass assertion - see notes in lines 31- 36
+    assert(last_response.body.include?('41'))  # two ways to pass assertion - see notes in lines 31- 36
+    assert(last_response.body.include?('10'))  # two ways to pass assertion - see notes in lines 31- 36
+    assert(last_response.body.include?('20'))  # two ways to pass assertion - see notes in lines 31- 36
+    assert(last_response.body.include?('30'))  # two ways to pass assertion - see notes in lines 31- 36
   end
 
   def test_get_results_multiple_values_redirect
