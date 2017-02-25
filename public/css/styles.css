@@ -12,7 +12,6 @@ footer {
 
 div {
   margin: 0 auto;
-  max-width: 600px;
 }
 
 a {
@@ -25,8 +24,8 @@ form {
 
 .image {
   background-image: url(/../images/personal_details.png);
-  height: 38%;
-  width: 50%;
+  height: 280;
+  width: 575;
 }
 
 .center {
