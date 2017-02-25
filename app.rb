@@ -50,7 +50,7 @@ class PersonalDetailsApp < Sinatra::Base
     two = params[:num_2]  # value pulled via name="num_2" in get_numbers.erb
     three = params[:num_3]  # value pulled via name="num_3" in get_numbers.erb
     # comment out line 53 for test_post_numbers_multiple_values_no_redirect
-    redirect '/results?n=' + backend_name_5 + '&a=' + backend_age_3 + '&n1=' + one + '&n2=' + two + '&n3' + three
+    redirect '/results?n=' + backend_name_5 + '&a=' + backend_age_3 + '&n1=' + one + '&n2=' + two + '&n3=' + three
     # # comment out lines 55 - 60 if returning final results via this route
     # sum = one.to_i + two.to_i + three.to_i
     # compare = (sum < backend_age_3.to_i) ? "less" : "greater"
@@ -67,7 +67,8 @@ class PersonalDetailsApp < Sinatra::Base
     two_2 = params[:n2]
     three_2 = params[:n3]
     # line 70 for test_post_numbers_multiple_values_redirect to verify that redirected values made it to this route
-    "name = #{backened_name_6}, age = #{backened_age_4}, first = #{one_2}, second = #{two_2}, third = #{three_2}"
+    # "name = #{backened_name_6}, age = #{backened_age_4}, first = #{one_2}, second = #{two_2}, third = #{three_2}"
+    erb :results, locals: {view_name: backened_name_6, view_age: backened_age_4, view_n1: one_2, view_n2: two_2, view_n3: three_2}
   end
 
 end
