@@ -49,12 +49,12 @@ class PersonalDetailsApp < Sinatra::Base
     one = params[:num_1]  # value pulled via name="num_1" in get_numbers.erb
     two = params[:num_2]  # value pulled via name="num_2" in get_numbers.erb
     three = params[:num_3]  # value pulled via name="num_3" in get_numbers.erb
-    sum = one.to_i + two.to_i + three.to_i
-    compare = (sum < backend_age_3.to_i) ? "less" : "greater"
-    "Hello again #{backend_name_5}.<br>
-     You are #{backend_age_3} years old.<br>
-     Your favorite numbers are #{one}, #{two} and #{three}.<br>
-     The sum of your favorite numbers is #{sum}, which is #{compare} than your age."
+    # sum = one.to_i + two.to_i + three.to_i
+    # compare = (sum < backend_age_3.to_i) ? "less" : "greater"
+    # "Hello again #{backend_name_5}.<br>
+    #  You are #{backend_age_3} years old.<br>
+    #  Your favorite numbers are #{one}, #{two} and #{three}.<br>
+    #  The sum of your favorite numbers is #{sum}, which is #{compare} than your age."
   end
 
 end
